@@ -7,8 +7,8 @@ getWords = (map read . words) <$> getLine
 main :: IO ()
 main = do
     t <- read <$> getLine
-    -- For each test case, output one line containing Case #x: and nothing else.
-    -- Then output R more lines of C characters each.
+    -- > For each test case, output one line containing Case #x: and nothing else.
+    -- > Then output R more lines of C characters each.
     mapM_ (\i -> putStr ("Case #" ++ show i ++ ":\n") >> parser) ([1..t] :: [Int])
 
 parser :: IO ()
@@ -16,15 +16,15 @@ parser = do
     -- Each begins with one line with two integers R and C.
     [r, _ {- c -}] <- getWords
 
-    -- Then, there are R more lines of C characters each, representing the cake.
-    -- Each character is either
-    --   an uppercase English letter (which means that your assistant has already added that letter to that cell)
-    --   or ? (which means that that cell is blank).
+    -- > Then, there are R more lines of C characters each, representing the cake.
+    -- > Each character is either
+    -- >   an uppercase English letter (which means that your assistant has already added that letter to that cell)
+    -- >   or ? (which means that that cell is blank).
     grid <- replicateM r getLine
 
-    -- Output R more lines of C characters each.
-    -- Your output grid must be identical to the input grid, but with every ? replaced with an uppercase English letter,
-    -- representing that that cell appears in the slice for the child who has that initial.
+    -- > Output R more lines of C characters each.
+    -- > Your output grid must be identical to the input grid, but with every ? replaced with an uppercase English letter,
+    -- > representing that that cell appears in the slice for the child who has that initial.
     mapM_ putStrLn $ fillGrid grid
 
 {-
